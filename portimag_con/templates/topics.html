@@ -5,7 +5,7 @@
 	
 	<div class="all-title-box">
 		<div class="container text-center">
-			<h1>Courses</span></h1>
+			<h1>İçerikler</span></h1>
 		</div>
 	</div>
 	
@@ -14,7 +14,7 @@
             <div class="row"> 
                 <div class="col-lg-9 blog-post-single">
 					
-                    <div class="row"> 
+                    <div class="row" style=""> 
 						{% for topic in topics %}
                         <div class="col-lg-6 col-md-6 col-12 mb-4">
                             <div class="course-item">
@@ -26,7 +26,7 @@
                                         <h2><a href="{% url 'topic_detail' topic.category.slug topic.id %}" title="">{{topic.name}}</a></h2>
                                     </div>
                                     <div class="course-desc">
-                                        <p>{{topic.description | truncatechars:140}}</p>
+                                        <p>{{topic.description | truncatechars:100}}</p>
                                     </div>
                                 </div>
                                 <div class="course-meta-bot">
@@ -45,7 +45,7 @@
 				<div class="col-lg-3 col-12 right-single">
 					<div class="widget-search">
 						<div class="site-search-area">
-							<form method="get" id="site-searchform" action="#">
+							<form method="get" id="site-searchform" action="{% url 'search' %}">
 								<div>
 									<input class="input-text form-control" name="search" placeholder="Anahtarkelime ara..." type="text">
 									<input id="searchsubmit" value="Search" type="submit">
@@ -56,8 +56,8 @@
 					<div class="widget-categories">
 						<h3 class="widget-title">Kategori</h3>
 						<ul>
-							{% for category in categorys %}
-								<li><a href="{% url 'topic_by_category' category.slug %}">{{category.name}}</a></li>
+							{% for category in categories %}
+								<li><a href="{% url 'topic_by_category' category.slug %}">{% if category.slug in request.path %} <b>{{category.name}}</b>{% else %}{{category.name}}{% endif %}</a></li>
 							{% endfor %}
 						</ul>
 					</div>

@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 # Create your models here.
 class Category(models.Model):
@@ -17,6 +18,7 @@ class Tag(models.Model):
         return self.name
 
 class Topic(models.Model):
+    user = models.ForeignKey(User,null=True, on_delete=models.CASCADE )
     name = models.CharField(max_length=200, unique=True, verbose_name="konu adı", help_text="konu başlğı girin")
     category = models.ForeignKey(Category, null=True, on_delete= models.DO_NOTHING)
     tag = models.ManyToManyField(Tag,blank=True, null=True)

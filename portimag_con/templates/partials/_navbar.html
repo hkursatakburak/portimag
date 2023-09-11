@@ -16,6 +16,8 @@
                     <li class="nav-item {%if '/' == request.path %} active {% endif %}"><a class="nav-link" href="{% url 'index' %}">ANASAYFA</a></li>
                     <li class="nav-item {% if 'içerikler/' in request.path %} active {% endif %}"><a class="nav-link" href="{% url 'topics' %}">İçerikler</a></li>              
                     <li class="nav-item {% if 'hakkımda/' in request.path %} active {% endif %}"><a class="nav-link" href="{% url 'hakkımda' %}">Hakkımızda</a></li>
+                    <li class="nav-item {% if 'kullanıcılar/' in request.path %} active {% endif %}"><a class="nav-link" href="{% url 'user' %}">Kullanıcılar</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Giriş Yap</span></a></li>

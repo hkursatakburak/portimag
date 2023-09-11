@@ -1,8 +1,9 @@
 from django.urls import path
-from . import views
+#from . import views
+from pages.views import HakkımdaView, IndexView
 
 urlpatterns = [
-    path('', views.index, name = "index"),
-    path('hakkımda/', views.hakkımda, name = "hakkımda")
+    path('', IndexView.as_view(), name = "index"),
+    path('hakkımda/', HakkımdaView.as_view(), name = "hakkımda")
     
 ]
