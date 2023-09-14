@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class LoginForm(forms.Form):
     username = forms.CharField(widget= forms.TextInput(attrs={
         'class': 'form-control',
-        'placeholder' : 'Ad',
+        'placeholder' : 'Kullanıcı adı',
     }))
     password = forms.CharField(widget= forms.PasswordInput(attrs={
         'class': 'form-control',
@@ -21,6 +21,12 @@ class RegisterForm(UserCreationForm):
         'class': 'form-control',
         'placeholder' : 'Soyad',
     }))
+
+    username = forms.CharField(widget= forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder' : 'Kullanıcı adı',
+    }))
+
     email = forms.CharField(widget= forms.EmailInput(attrs={
         'class': 'form-control',
         'placeholder' : 'Email',
@@ -34,9 +40,9 @@ class RegisterForm(UserCreationForm):
         'placeholder' : 'Şifreni tekrarla',
     }))
 
-    class Meta(): 
+    class Meta: 
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name','username', 'email', 'password1', 'password2']
 
 """class ContactForm(forms.ModelForm):
     first_name = forms.CharField(widget= forms.TextInput(attrs={

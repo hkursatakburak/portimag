@@ -29,7 +29,7 @@
 								{% else %}
 								<button type="submit" class="btn btn-outline-success rounded-0" data-toggle="modal"
 									data-target="#enrollModal">
-									<span>ENROLL</span>
+									<span>Takip et</span>
 								</button>
 								{% endif %}
 							{% endif %}
@@ -54,8 +54,8 @@
 				<div class="blog-author">
 					<div class="author-bio">
 						<h3 class="author_name"><a
-								href="{% url 'user_detail' course.teacher.pk %}">{{topic.user.name}}</a></h3>
-						<h5>{{course.teacher.title}}</h5>
+								href="{% url 'user_detail' topic.user.pk %}">{{topic.user.name}}</a></h3>
+						<h5>{{topic.user.title}}</h5>
 						<p class="author_det">
 							{{topic.user.description}}
 						</p>
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 				<div class="widget-categories">
-					<h3 class="widget-title">Categories</h3>
+					<h3 class="widget-title">Kategori</h3>
 					<ul>
 						{% for category in categories %}
 							<li><a href="{% url 'topic_by_category' category.slug %}">{{category.name}}</a></li>
@@ -93,7 +93,7 @@
 					</ul>
 				</div>
 				<div class="widget-tags">
-					<h3 class="widget-title">Search Tags</h3>
+					<h3 class="widget-title">Arama</h3>
 					<ul class="tags">
 						{% for tag in tags %}
 						<li><a href="{% url 'topic_by_tag' tag.slug %}">{% if tag.slug in request.path %} <b>{{tag.name}}</b>{% else %}{{tag.name}}{% endif %}</a></li>
@@ -122,10 +122,10 @@
 				<h1>{{topic.name}}</h1>
 			</div>
 			<div class="modal-footer">
-				<form action="{% url 'enroll_the_course' %}" method="POST">
+				<form action="{% url 'enroll_the_topic' %}" method="POST">
 					{% csrf_token %}
 					<input type="hidden" name="user_id" value="{{user.id}}">
-					<input type="hidden" name="course_id" value="{{course.id}}">
+					<input type="hidden" name="topic_id" value="{{topic.id}}">
 					<input type="submit" value="I AM SURE" class="btn btn-success">
 				</form>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">

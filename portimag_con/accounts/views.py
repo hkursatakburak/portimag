@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from . forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from topics.models import Topic
+from django.contrib.auth.models import User
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -39,7 +43,24 @@ def user_register(request):
 
 
 def user_logout(request):
-    pass
+    logout(request)
+    return redirect('index')
 
+@login_required(login_url="login")
 def user_dashboard(request):
-    pass
+    current_user = request.user
+
+    topics = current_user.konu_takip.all()
+    context = {
+        'topics' : topics
+    }
+    return render(request, "dahsboard.html", context)
+
+
+def enroll_the_topic(request):
+    topic_id = request.POST['topic_id']
+    user_id = request.POST['user_id']
+    topic = Topic.objects.get(id = topic_id)
+    user = User.objects.get(id = user_id)
+    topic.students.add(user)
+    return redirect('dashboard')
