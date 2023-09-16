@@ -3829,7 +3829,7 @@ a.link-style3 {
 .course-item{
 	background: #ffffff;
 }
-.course-item{}
+
 .course-title > h2 {
     margin: 15px 0;
     padding: 0px;
@@ -3870,6 +3870,12 @@ a.link-style3 {
 	color: #eea412;
 }
 
+#hesap{
+    display: inline-block;
+    border-radius: 100%;
+    background-image: url(user.png);
+    background-size: cover;
+}
 
 
 

@@ -12,7 +12,7 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbars-host">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto mr-5">
                     <li class="nav-item {%if '/' == request.path %} active {% endif %}"><a class="nav-link" href="{% url 'index' %}">ANASAYFA</a></li>
                     <li class="nav-item {% if 'içerikler/' in request.path %} active {% endif %}"><a class="nav-link" href="{% url 'topics' %}">İçerikler</a></li>              
                     <li class="nav-item {% if 'hakkımda/' in request.path %} active {% endif %}"><a class="nav-link" href="{% url 'hakkımda' %}">Hakkımızda</a></li>
@@ -22,19 +22,27 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     {%if user.is_authenticated %}
-                    <li><a class="hover-btn-new log orange mr-2" href="{% url 'dashboard'%}"><span>{{user.username}}</span></a></li>
-                    <li><a class="hover-btn-new log orange" href="javascript:{document.getElementById('logout').submit()}"><i class= 'fa fa-user-plus'></i></span></a>
-                    
-                        <form action="{% url 'logout'%}" method="POST" id="logout"> 
-                            {%csrf_token%}
-                            <input type="hidden">
-
-                        </form>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="hesap" href="{% static 'user.png' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'images/gecicilogo1.jpg' %}" alt=""  />
+                            
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'dashboard'%}"><span>Profil</span></a></li>
+                            <li><a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}"><span>Çıkış yap</span></a>
+                            
+                                <form action="{% url 'logout'%}" method="POST" id="logout"> 
+                                    {%csrf_token%}
+                                    <input type="hidden">
+        
+                                </form>
+                            </li>
+                        </ul>
                     </li>
                     
+                    
                     {% else %}
-                    <li><a class="hover-btn-new log orange mr-2" href="{% url 'login'%}"><span><i class= 'fa fa-sign-in'> </i></span></a></li>
-                    <li><a class="hover-btn-new log orange" href="{% url 'register'%}"><span><i class= 'fa fa-user-plus'> </i></span></a></li>
+                    <li><a class="hover-btn-new log orange" href="{% url 'login'%}"><span>Giriş yap</span></a></li>
                     {%endif%}
                 </ul>
             </div>
